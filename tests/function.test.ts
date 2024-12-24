@@ -10,4 +10,37 @@ describe("Function", () => {
     }
     printHello("Dwi");
   });
+
+  // default value
+  it("should support default value", () => {
+    function sayHello(name: string = "Dwi"): string {
+      return `Hello ${name}`;
+    }
+    expect(sayHello()).toBe("Hello Dwi");
+    expect(sayHello("eco")).toBe("Hello eco");
+  });
+
+  // rest parameter
+  it("should support rest parameter", () => {
+    function sum(...values: number[]): number {
+      let total = 0;
+      for (const value of values) {
+        total += value;
+      }
+      return total;
+    }
+    expect(sum(1, 2, 3)).toBe(6);
+  });
+
+  // support optional parameter
+  it("should support optional parameter", () => {
+    function sayHello(firstName: string, lastName?: string): string {
+      if (lastName) {
+        return `Hello ${firstName} ${lastName}`;
+      }
+      return `Hello ${firstName}`;
+    }
+    expect(sayHello("Dwi")).toBe("Hello Dwi");
+    expect(sayHello("Dwi", "Eko")).toBe("Hello Dwi Eko");
+  });
 });
